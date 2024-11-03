@@ -1,11 +1,12 @@
 const path = require("path");
 require("dotenv").config();
-const { DATABASE_URL } = process.env;
+
+console.log("DATABASE_URL:", process.env.DATABASE_URL); // For debugging purposes
 
 module.exports = {
   development: {
-    client: "postgresql",
-    connection: DATABASE_URL,
+    client: 'pg',  // Ensure this is 'pg' for PostgreSQL
+    connection: process.env.DATABASE_URL, // Ensure DATABASE_URL is loaded from environment variables
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
     },
